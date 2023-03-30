@@ -1,29 +1,28 @@
-# Gamba Coin Flip Example
+# Gamba Flip
+
+Create and host your own Solana Coin Flip app in seconds!
 
 ## Quick setup
 
-1. [Sign up for Github](https://github.com/)
+The button below will clone this repository and deploy your customized frontend app for free.
 
-2. [Sign up for Vercel using your Github account](https://vercel.com/)
+After that you can change whatever you want in your cloned repo and it will automatically update your site.
 
-3. Select "Import a Third-Party Git Repository" and enter this repo
-
-4. Earn fees!
-
-## Configuration
-
-Create a `.env` file with the following contents
-
-```
-GAMBA_GAME_TITLE=Gamba Flip # required
-GAMBA_CREATOR_ADDRESS=<YOUR SOLANA PUBLIC KEY> # required
-GAMBA_SOLANA_RPC=<SOLANA RPC ENDPOINT>
-GAMBA_SOLANA_RPC_WS=<SOLANA RPC WEBSOCKET ENDPOINT>
-```
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fgamba-labs%2Fflip&env=GAMBA_GAME_TITLE,GAMBA_CREATOR_ADDRESS,GAMBA_SOLANA_RPC,GAMBA_SOLANA_RPC_WS&envDescription=Environment%20Variables%20Description&envLink=https%3A%2F%2Fgithub.com%2Fgamba-labs%2Fflip%2Fblob%2Fmain%2F.env.example&repository-name=flip)
 
 > **Note**
 > If you're using a brand new Solana address as your creator wallet, make sure you initialize it by sending some SOL to it (~0.001 SOL should be enough)
 
+## Developing locally
+
+1. Clone this repository
+
+2. Rename `.env.example` to `.env` and fill in the required values:
+
+3. `yarn` to install the dependencies
+
+4. `yarn start` to run
+
 # Demo
 
-This example is hosted [here](https://flip.gamba.so)
+An example of this Gamba app is hosted [here](https://flip.gamba.so)
