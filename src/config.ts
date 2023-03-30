@@ -3,9 +3,9 @@ import { clusterApiUrl } from '@solana/web3.js'
 export const getConfig = () => {
   const conf = import.meta.env
   return {
-    rpcEndpoint: conf.VITE_RPC_ENDPOINT || clusterApiUrl(),
-    rpcWsEndpoint: conf.VITE_RPC_WS_ENDPOINT || undefined,
-    gambaName: conf.VITE_GAMBA_NAME || 'Gamba Flip',
-    gambaCreator: conf.VITE_GAMBA_CREATOR || undefined,
+    gambaName: conf.GAMBA_GAME_TITLE || 'Gamba Flip',
+    gambaCreator: conf.GAMBA_CREATOR_ADDRESS || undefined,
+    rpcEndpoint: conf.GAMBA_SOLANA_RPC_HTTP || clusterApiUrl(),
+    rpcWsEndpoint: conf.GAMBA_SOLANA_RPC_WS || undefined,
   }
 }

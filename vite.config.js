@@ -4,11 +4,11 @@ import { defineConfig } from 'vite'
 import { VitePluginFonts } from 'vite-plugin-fonts'
 
 export default defineConfig({
-  optimizeDeps: { exclude: ['gamba'] },
+  // optimizeDeps: { exclude: ['gamba'] },
+  envPrefix: 'GAMBA_',
   server: { port: 4080 },
-  // eslint-disable-next-line no-undef
   resolve: { alias: { '@src': path.resolve(__dirname, './src') } },
-  define: { 'process.env.ANCHOR_BROWSER': true },
+  define: {'process.env.ANCHOR_BROWSER': true},
   plugins: [
     react(),
     VitePluginFonts({
