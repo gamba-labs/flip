@@ -106,15 +106,18 @@ function Game() {
 
 export function App() {
   const config = getConfig()
-  if (!config.gambaCreator) {
+  if (!config.creatorAddress) {
     return (
       <pre>.env file not configured properly.</pre>
     )
   }
+
   return (
     <>
       <GlobalStyle />
       <Gamba
+        name="Gamba Flip"
+        creator={config.creatorAddress}
         connection={{
           endpoint: config.rpcEndpoint,
           config: {
@@ -122,8 +125,6 @@ export function App() {
             wsEndpoint: config.rpcWsEndpoint,
           },
         }}
-        name={config.gambaName}
-        creator={config.gambaCreator}
       >
         <Game />
       </Gamba>
