@@ -7,61 +7,70 @@ import { Value } from './Value'
 
 const Container = styled.div`
   display: grid;
-  gap: 20px;
+  gap: 5px;
   display: none;
   ${MOBILE} {
-    display: unset;
+    display: grid;
     z-index: 1;
     position: fixed;
     right: 20px;
     top: 20px;
     pointer-events: none;
+    a {
+      pointer-events: auto;
+      color: unset;
+    }
   }
 `
 
 const Wrapper = styled.div`
   display: flex;
-  gap: 20px;
   font-size: 12px;
   color: white;
-  padding: 10px;
-  border-radius: 10px;
+  display: flex;
+  gap: 20px;
   & > div {
-    text-align: left;
+    flex-grow: 1;
+    text-align: right;
   }
 `
 
-interface AppConfig {
-  name: string,
-  results: Record<number, string>
-}
-
-const KNOWN_APPS: Record<string, AppConfig> = {
-  DwRFGbjKbsEhUMe5at3qWvH7i8dAJyhhwdnFoZMnLVRV: {
-    name: 'Gamba Flip',
-    results: {
-      0: 'Heads',
-      1: 'Tails',
-    },
-  },
-}
-const getAppConfig = (pubkey: PublicKey): AppConfig | undefined => KNOWN_APPS[pubkey.toBase58()]
-
 export function RecentGames() {
   const gamba = useGamba()
+
+  const getReadableResult = (pubkey: PublicKey, resultIndex: number) => {
+    // The game was played on our frontend
+    if (pubkey.equals(gamba.config.creator)) {
+      return {
+        name: gamba.config.name,
+        result: ['Heads', 'Tails'][resultIndex]
+      }
+    }
+    // Unknown frontend
+    return {
+      name: 'Game ' + pubkey.toBase58().substring(0, 4) + '..',
+      result: resultIndex
+    }
+  }
+
   return (
     <Container>
       {gamba.recentGames.map((res) => {
         const profit = res.payout - res.wager
-        const key = res.player.toBase58() + '-' + res.nonce
-        const app = getAppConfig(res.creator)
+        const player = res.player.toBase58()
+        const key = player + '-' + res.nonce
+        const { name, result } = getReadableResult(res.creator, res.resultIndex)
         return (
           <Wrapper key={key}>
-            <div>{app?.name ?? 'Unknown Game'}</div>
-            <div>{app?.results[res.resultIndex] ?? res.resultIndex}</div>
-            <div>{res.player.toBase58().substring(0, 6)}...</div>
+            <div>{name}</div>
+            <div>{result}</div>
+            <a target="_blank" href={`https://explorer.solana.com/address/${player}`}>
+              {player.substring(0, 6)}..
+            </a>
             <Amount $value={profit}>
-              <Value children={`${profit >= 0 ? '+' : ''}${profit / LAMPORTS_PER_SOL} SOL`} />
+              <Value>
+                {`${profit >= 0 ? '+' : ''}${(profit / LAMPORTS_PER_SOL).toFixed(2)} SOL`}
+              </Value>
             </Amount>
             {/* <Time time={res.estimatedTime} /> */}
           </Wrapper>
