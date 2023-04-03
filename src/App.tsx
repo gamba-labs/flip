@@ -20,18 +20,15 @@ import {
   Info,
   Wrapper,
 } from './styles'
-
-const HEADS = [2, 0]
-const TAILS = [0, 2]
-const MAX_WAGER = .25
-const MIN_WAGER = .01
+import { HEADS, MIN_WAGER, TAILS } from './constants'
 
 function Game() {
   const gamba = useGamba()
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<number | null>(null)
   const [wager, setWager] = useState(MIN_WAGER)
-  const wagerIsValid = Number.isFinite(Number(wager)) && wager >= MIN_WAGER && wager <= MAX_WAGER
+  const maxWager = gamba.house.maxPayout / 2
+  const wagerIsValid = Number.isFinite(Number(wager)) && wager >= MIN_WAGER && wager <= maxWager
   const accountCreated = gamba.user.created
   const canPlay = accountCreated && !loading && wagerIsValid && gamba.user.status === 'playing'
 
