@@ -11,15 +11,23 @@ import {
 import styled from 'styled-components'
 
 const Wapper = styled.div`
-  width: 320px;
+  width: 360px;
+`
+
+const Info = styled.div`
+  font-size: 11px;
+  opacity: .8;
+  text-align: left;
+  padding: 5px;
 `
 
 export function SetupGuide() {
+  const [appName, setAppName] = useState('Gamba Flip')
   const [creator, setCreator] = useState('')
   const [rpc, setRpc] = useState('')
   const [generated, setGenerated] = useState(false)
   const [copied, setCopied] = useState(false)
-  const env = `GAMBA_CREATOR_ADDRESS="${creator}"\n\nGAMBA_SOLANA_RPC="${rpc || 'https://api.mainnet-beta.solana.com'}"\n\nGAMBA_SOLANA_RPC_WS=`
+  const env = `GAMBA_APP_NAME="${appName}"\n\nGAMBA_CREATOR_ADDRESS="${creator}"\n\nGAMBA_SOLANA_RPC="${rpc || 'https://api.mainnet-beta.solana.com'}"\n\nGAMBA_SOLANA_RPC_WS=`
 
   const copy = async () => {
     try {
@@ -40,13 +48,21 @@ export function SetupGuide() {
           <Controls>
             <h1>Almost there!</h1>
             <div>
-              Enter your Environmental variables<br />
+              Enter your Environment variables
             </div>
             <Input
-              placeholder="Solana address"
-              value={creator}
-              onChange={(evt) => setCreator(evt.target.value)}
+              placeholder="App Name"
+              value={appName}
+              onChange={(evt) => setAppName(evt.target.value)}
             />
+            <div>
+              <Input
+                placeholder="Solana address"
+                value={creator}
+                onChange={(evt) => setCreator(evt.target.value)}
+              />
+              <Info>This wallet will collect fees. Please make sure it has been initialized by sending ~0.001 SOL to it!</Info>
+            </div>
             <Input
               placeholder="RPC URL (Leave empty for default)"
               value={rpc}
@@ -59,14 +75,15 @@ export function SetupGuide() {
         ) : (
           <Controls>
             <h1>Almost there!</h1>
-            <div>
-              Vercel: Go to your Project dashboard → Settings on → Environmental Variables, then paste the contents<br /><br />
+            <Info>
+              Vercel: Go to your Project dashboard → Settings on → Environment Variables, then paste the contents<br /><br />
               Locally: Create a file called ".env" in your project folder, then paste the contents
-            </div>
+            </Info>
             <Textarea
-              disabled
               style={{ height: '150px' }}
-              defaultValue={env}
+              value={env}
+              onChange={() => null}
+              spellCheck={false}
             />
             <ButtonGroup>
               <Button onClick={() => setGenerated(false)}>

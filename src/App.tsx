@@ -113,7 +113,7 @@ export function App() {
     <>
       <GlobalStyle />
       <Gamba
-        name="Gamba Flip"
+        name={config.appName}
         creator={config.creatorAddress}
         connection={{
           endpoint: config.rpcEndpoint,
