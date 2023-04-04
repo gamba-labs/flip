@@ -12,8 +12,7 @@ type GLTFResult = GLTF & {
 
 function CoinModel() {
   const coin = useGLTF('/Coin.glb') as GLTFResult
-  const heads = useTexture('/coin-heads.png')
-  const tails = useTexture('/coin-tails.png')
+  const [heads, tails] = useTexture(['/coin-heads.png', '/coin-tails.png'])
   return (
     <>
       <primitive object={coin.nodes.Coin}>

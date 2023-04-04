@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 import { Gamba, LAMPORTS_PER_SOL, useGamba } from 'gamba'
 import React, { useState } from 'react'
+import { SetupGuide } from './SetupGuide'
 import { BetInput } from './components/BetInput'
 import { CoinFlip } from './components/CoinFlip'
 import { DropdownMenu } from './components/DropdownMenu'
@@ -9,6 +10,7 @@ import { Loading } from './components/Loading'
 import { RecentGames } from './components/RecentGames'
 import { Value } from './components/Value'
 import { getConfig } from './config'
+import { HEADS, MIN_WAGER, TAILS } from './constants'
 import {
   Amount,
   Button,
@@ -18,9 +20,8 @@ import {
   Controls,
   GlobalStyle,
   Info,
-  Wrapper,
+  Wrapper
 } from './styles'
-import { HEADS, MIN_WAGER, TAILS } from './constants'
 
 function Game() {
   const gamba = useGamba()
@@ -103,12 +104,11 @@ function Game() {
 
 export function App() {
   const config = getConfig()
-  if (!config.creatorAddress) {
+  if (!config.creatorAddress || !config.rpcEndpoint) {
     return (
-      <pre>.env file not configured properly.</pre>
+      <SetupGuide />
     )
   }
-
   return (
     <>
       <GlobalStyle />

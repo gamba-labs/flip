@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   body {
     margin: 0;
-    color: black;
+    color: white;
     text-align: center;
     background: #090a0d;
     cursor: default;
@@ -28,6 +28,31 @@ export const GlobalStyle = createGlobalStyle`
   #root {
     height: 100%;
   }
+`
+
+const InputCSS = css`
+  padding: 15px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  border: none;
+  background: rgb(47 51 60);
+  color: white;
+  outline: none;
+  transition: background .1s;
+  &:focus {
+    background: rgb(58 63 75);
+  }
+`
+
+export const Input = styled.input`
+  height: 50px;
+  ${InputCSS}
+`
+
+export const Textarea = styled.textarea`
+  ${InputCSS}
+  resize: vertical;
 `
 
 export const Container = styled.div`
@@ -78,7 +103,7 @@ export const Info = styled.div`
 export const ButtonCSS = css<{$gradient?: boolean}>`
   padding: 15px;
   color: white;
-  background: rgb(47 51 60); //linear-gradient(180deg,rgba(255,124,83,1) -25%,rgba(255,85,85,1) 48%,rgba(255,10,83,1) 125%);
+  background: rgba(47, 51, 60, 1);
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -86,11 +111,11 @@ export const ButtonCSS = css<{$gradient?: boolean}>`
   transition: background .1s;
   outline: none;
   &:hover, &:focus {
-    background: rgb(58 63 75);
+    background: rgba(58, 63, 75, 1);
   }
   &:disabled {
     cursor: default;
-    background: #090f1b33;
+    background: rgba(58, 63, 75, .1)!important;
   }
   ${({ $gradient }) => $gradient && `
     transition: background .5s;

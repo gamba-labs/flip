@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "vite",
-    "dev": "vite",
+    "start": "vite --open",
+    "dev": "vite --open",
     "build": "vite build"
   },
   "dependencies": {

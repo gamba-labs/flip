@@ -1,29 +1,13 @@
 import { LAMPORTS_PER_SOL, useGamba } from 'gamba'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { SmallButton } from '../styles'
+import { SmallButton, Input } from '../styles'
 import { MIN_WAGER } from '../constants'
 
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 50px;
-`
-
-const Input = styled.input`
-  padding: 15px;
-  height: 50px;
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  border: none;
-  background: rgb(47 51 60);
-  color: white;
-  outline: none;
-  transition: background .1s;
-  &:focus {
-    background: rgb(58 63 75);
-  }
 `
 
 const Controls = styled.div`

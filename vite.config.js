@@ -8,7 +8,7 @@ export default defineConfig({
   envPrefix: 'GAMBA_',
   server: { port: 4080 },
   resolve: { alias: { '@src': path.resolve(__dirname, './src') } },
-  define: {'process.env.ANCHOR_BROWSER': true},
+  define: { 'process.env.ANCHOR_BROWSER': true },
   plugins: [
     react(),
     VitePluginFonts({

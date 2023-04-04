@@ -15,13 +15,11 @@ Every bet made on your site will reward you with fees!
 
 ## Developing locally
 
-1. Clone this repository
+1. `yarn` to install the dependencies
 
-2. Rename `.env.example` to `.env` and fill in the required values
+2. `yarn start` to run
 
-3. `yarn` to install the dependencies
-
-4. `yarn start` to run
+3. Finish setup in your browser
 
 # Demo
 
