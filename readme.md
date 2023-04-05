@@ -2,7 +2,7 @@
 
 A simple Coin Flip game built on [Gamba](https://github.com/gamba-labs/gamba).
 
-This repository can be used as a starting template for a completely new Gamba game, or you can simply fork without making any changes to the code and host it for free. Every time someone plays on your site you will be rewarded with fees.
+This repository can be used as a starting template for a completely new Gamba game, or you can simply fork without making any changes to the code and host it for free. Every time someone plays on your site you will automatically collect fees.
 
 ## Setup
 
@@ -20,7 +20,7 @@ The last step will trigger a redeploy on Vercel, which will take a minute or so 
 
 Every time a change has been made in the main repository you will get the option to sync your fork by clicking "Sync fork" ➜ "Update branch" on Github. This will automatically trigger a redeploy on Vercel which will update your site.
 
-## Fast deploy
+## Quick deploy
 
 Click the Deploy button to copy this repo and host it on Vercel. This is probably the fastest way to get going, but syncing your code with the main repo may be more difficult than the fork method described in the Setup section.
 
