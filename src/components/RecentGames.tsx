@@ -2,6 +2,7 @@ import { PublicKey } from '@solana/web3.js'
 import { LAMPORTS_PER_SOL, useGamba } from 'gamba'
 import React from 'react'
 import styled from 'styled-components'
+import { OPTIONS } from '../constants'
 import { Amount, MOBILE } from '../styles'
 import { Value } from './Value'
 
@@ -41,9 +42,10 @@ export function RecentGames() {
   const getReadableResult = (pubkey: PublicKey, resultIndex: number) => {
     // The game was played on our frontend
     if (pubkey.equals(gamba.config.creator)) {
+      const result = OPTIONS[resultIndex]?.label ?? resultIndex
       return {
         name: gamba.config.name,
-        result: ['Heads', 'Tails'][resultIndex],
+        result: result,
       }
     }
     // Unknown frontend

@@ -10,7 +10,7 @@ import { Loading } from './components/Loading'
 import { RecentGames } from './components/RecentGames'
 import { Value } from './components/Value'
 import { getConfig } from './config'
-import { HEADS, MIN_WAGER, TAILS } from './constants'
+import { MIN_WAGER, OPTIONS } from './constants'
 import {
   Amount,
   Button,
@@ -35,7 +35,7 @@ function Game() {
 
   const play = async (game: number[]) => {
     try {
-      const response = await gamba.play(game, wager * LAMPORTS_PER_SOL)
+      const response = await gamba.play(game, wager)
       setLoading(true)
       const result = await response.result()
       setResult(result.resultIndex)
@@ -77,12 +77,15 @@ function Game() {
               </Button>
             ) : (
               <ButtonGroup>
-                <Button disabled={!canPlay} onClick={() => play(HEADS)}>
-                  Heads
-                </Button>
-                <Button disabled={!canPlay} onClick={() => play(TAILS)}>
-                  Tails
-                </Button>
+                {OPTIONS.map((option) => (
+                  <Button
+                    key={option.label}
+                    disabled={!canPlay}
+                    onClick={() => play(option.config)}
+                  >
+                    {option.label}
+                  </Button>
+                ))}
                 <DropdownMenu
                   label="..."
                   options={[

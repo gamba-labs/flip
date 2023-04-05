@@ -27,14 +27,25 @@ interface Props {
 
 export function BetInput({ wager, onChange }: Props) {
   const gamba = useGamba()
-  const maxWager = gamba.house.maxPayout / LAMPORTS_PER_SOL / 2
-  const [_wager, _setWager] = useState(String(wager))
+  const maxWager = gamba.house.maxPayout / 2
+  const [_wager, _setWager] = useState(String(wager / LAMPORTS_PER_SOL))
   const accountCreated = gamba.user.created
 
-  const setWager = (x: number) => {
-    const max = Math.min(maxWager, Math.max(gamba.wallet.balance, gamba.user.balance))
-    const wager = Math.max(MIN_WAGER, Math.min(max, x))
-    _setWager(String(wager))
+  const setWager = (inputValue: number) => {
+    const fees = gamba.house.fees.house + gamba.house.fees.creator
+    const maxFunds = Math.max(
+      gamba.wallet.balance,
+      gamba.user.balance,
+    )
+    const wager = Math.max(
+      MIN_WAGER,
+      Math.min(
+        inputValue,
+        maxFunds - fees * maxFunds,
+        maxWager,
+      ),
+    )
+    _setWager(String(wager / LAMPORTS_PER_SOL))
     onChange(wager)
   }
 
@@ -45,7 +56,7 @@ export function BetInput({ wager, onChange }: Props) {
         value={_wager}
         disabled={!gamba.connected}
         onChange={(e) => _setWager(e.target.value)}
-        onBlur={() => setWager(Number(_wager))}
+        onBlur={() => setWager(Number(_wager) * LAMPORTS_PER_SOL)}
       />
       <Controls>
         <SmallButton disabled={!accountCreated} onClick={() => setWager(MIN_WAGER)}>

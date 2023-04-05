@@ -3,6 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import React, { Suspense, useEffect, useMemo, useRef } from 'react'
 import { BufferGeometry, CanvasTexture, Group, MeshStandardMaterial } from 'three'
 import { GLTF } from 'three-stdlib'
+import { OPTIONS } from '../constants'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -12,10 +13,9 @@ type GLTFResult = GLTF & {
 
 /** Creates label textures for HEADS / TAILS */
 function useCoinTextures(size = 300) {
-  const labels = ['HEADS', 'TAILS']
   const halfSize = size / 2
   return useMemo(() => {
-    return labels.map((label) => {
+    return OPTIONS.map(({ label }) => {
       const canvas = document.createElement('canvas')
       canvas.width = size
       canvas.height = size
@@ -39,8 +39,8 @@ function useCoinTextures(size = 300) {
         ctx.textAlign = 'center'
         ctx.strokeStyle = 'black'
         ctx.lineWidth = 10
-        ctx.strokeText(label, halfSize, halfSize)
-        ctx.fillText(label, halfSize, halfSize)
+        ctx.strokeText(label.toUpperCase(), halfSize, halfSize)
+        ctx.fillText(label.toUpperCase(), halfSize, halfSize)
         texture.needsUpdate = true
       }
       return texture
@@ -64,13 +64,13 @@ function CoinModel() {
       </primitive>
       <group>
         <mesh position-z={.26}>
-          <planeGeometry args={[1.4, 1.4, 1.4]} />
+          <planeGeometry args={[1.3, 1.3, 1.3]} />
           <meshBasicMaterial transparent map={heads} />
         </mesh>
       </group>
       <group rotation-y={Math.PI}>
         <mesh position-z={.26}>
-          <planeGeometry args={[1.4, 1.4, 1.4]} />
+          <planeGeometry args={[1.3, 1.3, 1.3]} />
           <meshBasicMaterial transparent map={tails} />
         </mesh>
       </group>
