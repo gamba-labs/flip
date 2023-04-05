@@ -23,6 +23,9 @@ const Info = styled.div`
   opacity: .8;
   text-align: left;
   padding: 5px;
+  a {
+    color: unset!important;
+  }
 `
 
 export function SetupGuide() {
@@ -35,7 +38,7 @@ export function SetupGuide() {
       `GAMBA_APP_NAME="${config.appName || ''}"`,
       `GAMBA_APP_LINK="${config.appLink || ''}"`,
       `GAMBA_CREATOR_ADDRESS="${config.creatorAddress}"`,
-      `GAMBA_SOLANA_RPC="${config.rpcEndpoint || 'https://api.mainnet-beta.solana.com'}"`,
+      `GAMBA_SOLANA_RPC="${config.rpcEndpoint}"`,
       `GAMBA_SOLANA_RPC_WS="${config.rpcWsEndpoint || ''}"`,
     ].join('\n\n')
   }, [config])
@@ -67,13 +70,16 @@ export function SetupGuide() {
                 value={config.creatorAddress}
                 onChange={(evt) => update({ creatorAddress: evt.target.value })}
               />
-              <Info>This wallet will collect fees. Please make sure it has been initialized by sending ~0.001 SOL to it!</Info>
+              <Info>This wallet will collect fees. Please make sure it has been initialized by sending ~0.001 SOL to it.</Info>
             </div>
-            <Input
-              placeholder="RPC URL (Leave empty for default)"
-              value={config.rpcEndpoint}
-              onChange={(evt) => update({ rpcEndpoint: evt.target.value })}
-            />
+            <div>
+              <Input
+                placeholder="RPC HTTP URL"
+                value={config.rpcEndpoint}
+                onChange={(evt) => update({ rpcEndpoint: evt.target.value })}
+              />
+              <Info>Get a free RPC on <a target="_blank" href="https://dev.helius.xyz/dashboard/app">helius.xyz</a> (Recommended), or use a <a target="_blank" href="https://docs.solana.com/cluster/rpc-endpoints">public RPC</a>.</Info>
+            </div>
             <Input
               placeholder="Game title (e.g. Coin Flip)"
               value={config.appName}
@@ -85,7 +91,7 @@ export function SetupGuide() {
               value={config.appLink}
               onChange={(evt) => update({ appLink: evt.target.value })}
             />
-            <Button disabled={!config.creatorAddress} onClick={() => setGenerated(true)}>
+            <Button disabled={!config.creatorAddress || !config.rpcEndpoint} onClick={() => setGenerated(true)}>
               ✅ Generate .env
             </Button>
           </Controls>
