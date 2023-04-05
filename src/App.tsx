@@ -20,7 +20,7 @@ import {
   Controls,
   GlobalStyle,
   Info,
-  Wrapper
+  Wrapper,
 } from './styles'
 
 function Game() {
@@ -113,7 +113,7 @@ export function App() {
     <>
       <GlobalStyle />
       <Gamba
-        name={config.appName}
+        name={config.appName ?? ''}
         creator={config.creatorAddress}
         connection={{
           endpoint: config.rpcEndpoint,

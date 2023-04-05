@@ -1,7 +1,6 @@
 {
-  "name": "gamba-flip",
+  "name": "flip",
   "version": "1.0.0",
-  "license": "MIT",
   "scripts": {
     "start": "vite --open",
     "dev": "vite --open",
@@ -20,7 +19,11 @@
   "devDependencies": {
     "@types/react-dom": "^18.0.11",
     "@types/styled-components": "^5.1.26",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^3.1.0",
+    "eslint": "^8.37.0",
+    "eslint-plugin-react": "^7.32.2",
     "vite": "^4.1.4",
     "vite-plugin-fonts": "^0.7.0"
   }

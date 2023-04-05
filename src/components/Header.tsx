@@ -1,6 +1,7 @@
+import { useGamba } from 'gamba'
 import React from 'react'
 import styled from 'styled-components'
-import { useGamba } from 'gamba'
+import { getConfig } from '../config'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -33,16 +34,18 @@ const Title = styled.h1`
 `
 
 const Subtitle = styled.h2`
+  font-weight: normal;
   font-size: 14px;
   color: #ccc;
 `
 
 export function Header() {
+  const { appLink } = getConfig()
   const gamba = useGamba()
 
   return (
     <Wrapper>
-      <Link target="_blank" href="https://github.com/gamba-labs">
+      <Link target="_blank" href={appLink ?? '#'}>
         <img width="50px" src="/logo.png" />
         <div>
           <Title>{gamba.config.name}</Title>

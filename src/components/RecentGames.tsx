@@ -43,13 +43,13 @@ export function RecentGames() {
     if (pubkey.equals(gamba.config.creator)) {
       return {
         name: gamba.config.name,
-        result: ['Heads', 'Tails'][resultIndex]
+        result: ['Heads', 'Tails'][resultIndex],
       }
     }
     // Unknown frontend
     return {
       name: 'Game ' + pubkey.toBase58().substring(0, 4) + '..',
-      result: resultIndex
+      result: resultIndex,
     }
   }
 
@@ -64,7 +64,7 @@ export function RecentGames() {
           <Wrapper key={key}>
             <div>{name}</div>
             <div>{result}</div>
-            <a target="_blank" href={`https://explorer.solana.com/address/${player}`}>
+            <a target="_blank" href={`https://explorer.solana.com/address/${player}`} rel="noreferrer">
               {player.substring(0, 6)}..
             </a>
             <Amount $value={profit}>

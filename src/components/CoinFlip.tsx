@@ -1,7 +1,7 @@
-import { useGLTF, useTexture } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import React, { Suspense, useEffect, useRef } from 'react'
-import { BufferGeometry, Group, MeshStandardMaterial } from 'three'
+import React, { Suspense, useEffect, useMemo, useRef } from 'react'
+import { BufferGeometry, CanvasTexture, Group, MeshStandardMaterial } from 'three'
 import { GLTF } from 'three-stdlib'
 
 type GLTFResult = GLTF & {
@@ -10,9 +10,47 @@ type GLTFResult = GLTF & {
   }
 }
 
+/** Creates label textures for HEADS / TAILS */
+function useCoinTextures(size = 300) {
+  const labels = ['HEADS', 'TAILS']
+  const halfSize = size / 2
+  return useMemo(() => {
+    return labels.map((label) => {
+      const canvas = document.createElement('canvas')
+      canvas.width = size
+      canvas.height = size
+      const texture = new CanvasTexture(canvas)
+      const ctx = canvas.getContext('2d')!
+      const image = document.createElement('img')
+      image.src = '/logo.png'
+      image.onload = () => {
+        // Draw image
+        ctx.save()
+        ctx.beginPath()
+        ctx.arc(halfSize, halfSize, halfSize, 0, Math.PI * 2, true)
+        ctx.closePath()
+        ctx.clip()
+        ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, size, size)
+
+        // Draw text
+        ctx.font = 'bold 50px Arial'
+        ctx.fillStyle = 'white'
+        ctx.textBaseline = 'middle'
+        ctx.textAlign = 'center'
+        ctx.strokeStyle = 'black'
+        ctx.lineWidth = 10
+        ctx.strokeText(label, halfSize, halfSize)
+        ctx.fillText(label, halfSize, halfSize)
+        texture.needsUpdate = true
+      }
+      return texture
+    })
+  }, [])
+}
+
 function CoinModel() {
   const coin = useGLTF('/Coin.glb') as GLTFResult
-  const [heads, tails] = useTexture(['/coin-heads.png', '/coin-tails.png'])
+  const [heads, tails] = useCoinTextures()
   return (
     <>
       <primitive object={coin.nodes.Coin}>
@@ -26,13 +64,13 @@ function CoinModel() {
       </primitive>
       <group>
         <mesh position-z={.26}>
-          <planeGeometry />
+          <planeGeometry args={[1.4, 1.4, 1.4]} />
           <meshBasicMaterial transparent map={heads} />
         </mesh>
       </group>
       <group rotation-y={Math.PI}>
         <mesh position-z={.26}>
-          <planeGeometry />
+          <planeGeometry args={[1.4, 1.4, 1.4]} />
           <meshBasicMaterial transparent map={tails} />
         </mesh>
       </group>

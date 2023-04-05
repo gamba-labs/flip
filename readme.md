@@ -1,26 +1,27 @@
-# Gamba Flip
+# Coin Flip
 
-A simple Coin Flip game built on [Gamba](https://github.com/gamba-labs/gamba)
+A simple Coin Flip game built on [Gamba](https://github.com/gamba-labs/gamba).
 
-## Quick setup
+This repository can be used as a starting template for a completely new Gamba game, or you can simply fork without making any changes to the code and host it for free. Every time someone plays on your site you will be rewarded with fees.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fgamba-labs%2Fflip&env=GAMBA_CREATOR_ADDRESS,GAMBA_SOLANA_RPC&envDescription=Environment%20variables%20can%20be%20changed%20later%20in%20your%20project's%20settings%20panel&envLink=https%3A%2F%2Fgithub.com%2Fgamba-labs%2Fflip%2Fblob%2Fmain%2F.env.example&repository-name=flip)
+## Setup
 
-Click the Deploy button to host your custom frontend app for free. Once deployed, you can change whatever you want in the code and it will automatically update your site.
+1. [Fork this repository](https://github.com/gamba-labs/flip/fork).
 
-Every bet made on your site will reward you with fees!
+2. [Connect your forked repo and deploy on Vercel](https://vercel.com/new).
 
-> **Note**
-> If you're using a brand new Solana address as your creator wallet, make sure you initialize it by sending some SOL to it (~0.001 SOL should be enough)
+3. Set up your Environment variables using the guide shown on your deployed site.
 
-## Developing locally
+4. Navigate to the `public` folder in your forked repo and upload a custom `logo.png` (Recommended resolution 512x512)
 
-1. `yarn` to install the dependencies
+The last step will trigger a redeploy on Vercel, which will take a minute or so to complete. If you want to skip the last step you have to manually redeploy on Vercel for the Environment variables to take effect.
 
-2. `yarn start` to run
+## Updating
 
-3. Finish setup in your browser
+Every time a change has been made in the main repository you will get the option to sync your fork by clicking "Sync fork" ➜ "Update branch" on Github. This will automatically trigger a redeploy on Vercel which will update your site.
 
-# Demo
+## Fast deploy
 
-An example of this Gamba app is hosted [here](https://flip.gamba.so)
+Click the Deploy button to copy this repo and host it on Vercel. This is probably the fastest way to get going, but syncing your code with the main repo may be more difficult than the fork method described in the Setup section.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fgamba-labs%2Fflip&env=GAMBA_APP_NAME,GAMBA_CREATOR_ADDRESS,GAMBA_SOLANA_RPC&envDescription=Environment%20variables%20can%20be%20changed%20later%20in%20your%20project's%20settings%20panel&envLink=https%3A%2F%2Fgithub.com%2Fgamba-labs%2Fflip%2Fblob%2Fmain%2F.env.example&repository-name=flip)
