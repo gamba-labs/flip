@@ -44,7 +44,7 @@ export function BetInput({ wager, onChange }: Props) {
         maxWager,
       ),
     )
-    _setWager(String((wager / LAMPORTS_PER_SOL).toFixed(2)))
+    _setWager(String(wager / LAMPORTS_PER_SOL))
     onChange(wager)
   }
 
