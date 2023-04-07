@@ -1,6 +1,6 @@
 import { LAMPORTS_PER_SOL } from 'gamba'
 
-export const ASSET_MODEL = '/coin.glb'
+export const ASSET_MODEL = '/Coin.glb'
 export const ASSET_LOGO = '/logo.png'
 
 export const OPTIONS = [
