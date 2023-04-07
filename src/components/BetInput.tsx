@@ -1,7 +1,8 @@
-import { LAMPORTS_PER_SOL, MIN_BET, useGamba } from 'gamba'
+import { LAMPORTS_PER_SOL, useGamba } from 'gamba'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Input, SmallButton } from '../styles'
+import { MIN_BET } from '../constants'
 
 const Wrapper = styled.div`
   position: relative;

@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import { LAMPORTS_PER_SOL, MIN_BET, useGamba } from 'gamba'
+import { LAMPORTS_PER_SOL, useGamba } from 'gamba'
 import React, { useState } from 'react'
 import { BetInput } from './components/BetInput'
 import { Coin } from './components/Coin'
@@ -8,7 +8,7 @@ import { Header } from './components/Header'
 import { Loading } from './components/Loading'
 import { RecentGames } from './components/RecentGames'
 import { Value } from './components/Value'
-import { OPTIONS } from './constants'
+import { MIN_BET, OPTIONS } from './constants'
 import {
   Amount,
   Balance,
