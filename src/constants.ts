@@ -1,4 +1,5 @@
-import { LAMPORTS_PER_SOL } from '@solana/web3.js'
+export const ASSET_MODEL = '/coin.glb'
+export const ASSET_LOGO = '/logo.png'
 
 export const OPTIONS = [
   {
@@ -10,5 +11,3 @@ export const OPTIONS = [
     config: [0, 2],
   },
 ]
-
-export const MIN_WAGER = .01 * LAMPORTS_PER_SOL

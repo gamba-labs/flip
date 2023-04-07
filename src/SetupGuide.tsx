@@ -60,7 +60,7 @@ export function SetupGuide() {
         <img src="/gamba.png" height="100" />
         {!generated ? (
           <Controls>
-            <h1>Almost there!</h1>
+            <h2>Almost there!</h2>
             <div>
               Enter your Environment variables
             </div>
@@ -70,7 +70,9 @@ export function SetupGuide() {
                 value={config.creatorAddress}
                 onChange={(evt) => update({ creatorAddress: evt.target.value })}
               />
-              <Info>This wallet will collect fees. Please make sure it has been initialized by sending ~0.001 SOL to it.</Info>
+              <Info>
+                This wallet will collect fees. Please make sure it has been initialized by sending ~0.001 SOL to it.
+              </Info>
             </div>
             <div>
               <Input
@@ -78,7 +80,9 @@ export function SetupGuide() {
                 value={config.rpcEndpoint}
                 onChange={(evt) => update({ rpcEndpoint: evt.target.value })}
               />
-              <Info>Get a free RPC on <a target="_blank" href="https://dev.helius.xyz/dashboard/app">helius.xyz</a> (Recommended), or use a <a target="_blank" href="https://docs.solana.com/cluster/rpc-endpoints">public RPC</a>.</Info>
+              <Info>
+                Get a free RPC on <a target="_blank" href="https://dev.helius.xyz/dashboard/app" rel="noreferrer">helius.xyz</a> (Recommended), or use a <a target="_blank" href="https://docs.solana.com/cluster/rpc-endpoints" rel="noreferrer">public RPC</a>.
+              </Info>
             </div>
             <Input
               placeholder="Game title (e.g. Coin Flip)"
@@ -97,7 +101,7 @@ export function SetupGuide() {
           </Controls>
         ) : (
           <Controls>
-            <h1>Almost there!</h1>
+            <h2>Almost there!</h2>
             <Info>
               Vercel: Go to your Project dashboard → Settings on → Environment Variables, then paste the contents<br /><br />
               Locally: Create a file called {'".env"'} in your project folder, then paste the contents

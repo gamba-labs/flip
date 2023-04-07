@@ -95,7 +95,7 @@ export const ButtonGroup = styled.div`
   }
 `
 
-export const Info = styled.div`
+export const Balance = styled.div`
   display: flex;
   justify-content: space-between;
 `
@@ -120,7 +120,7 @@ export const ButtonCSS = css<{$gradient?: boolean}>`
   ${({ $gradient }) => $gradient && `
     transition: background .5s;
     background-image: linear-gradient(90deg,rgba(255,124,83,1) -0%,rgba(255,85,85,1) 48%,rgba(255,10,83,1) 100%);
-    &:hover {
+    &:hover, &:focus {
       background-image: linear-gradient(90deg,rgba(255,124,83,1) -25%,rgba(255,85,85,1) 48%,rgba(255,10,83,1) 125%);
     }
   `}
@@ -144,7 +144,7 @@ export const Amount = styled.div<{$value: number}>`
 
 export const CanvasWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 75%;
   position: fixed;
   left: 0;
   top: 0;

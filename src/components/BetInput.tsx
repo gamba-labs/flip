@@ -1,8 +1,7 @@
-import { LAMPORTS_PER_SOL, useGamba } from 'gamba'
+import { LAMPORTS_PER_SOL, MIN_BET, useGamba } from 'gamba'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { SmallButton, Input } from '../styles'
-import { MIN_WAGER } from '../constants'
+import { Input, SmallButton } from '../styles'
 
 const Wrapper = styled.div`
   position: relative;
@@ -38,14 +37,14 @@ export function BetInput({ wager, onChange }: Props) {
       gamba.user.balance,
     )
     const wager = Math.max(
-      MIN_WAGER,
+      MIN_BET,
       Math.min(
         inputValue,
         maxFunds - fees * maxFunds,
         maxWager,
       ),
     )
-    _setWager(String(wager / LAMPORTS_PER_SOL))
+    _setWager(String((wager / LAMPORTS_PER_SOL).toFixed(2)))
     onChange(wager)
   }
 
@@ -59,7 +58,7 @@ export function BetInput({ wager, onChange }: Props) {
         onBlur={() => setWager(Number(_wager) * LAMPORTS_PER_SOL)}
       />
       <Controls>
-        <SmallButton disabled={!accountCreated} onClick={() => setWager(MIN_WAGER)}>
+        <SmallButton disabled={!accountCreated} onClick={() => setWager(MIN_BET)}>
           MIN
         </SmallButton>
         <SmallButton disabled={!accountCreated} onClick={() => setWager(maxWager)}>

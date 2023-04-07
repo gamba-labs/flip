@@ -2,8 +2,8 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
 const animation = keyframes`
- 0% { left: -200%; }
- 100% { left: 100%; }
+  0% { left: -200%; }
+  100% { left: 100%; }
 `
 
 const Wrapper = styled.div<{$loading: boolean}>`

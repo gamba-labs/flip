@@ -2,6 +2,7 @@ import { useGamba } from 'gamba'
 import React from 'react'
 import styled from 'styled-components'
 import { getConfig } from '../config'
+import { ASSET_LOGO } from '../constants'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -46,7 +47,7 @@ export function Header() {
   return (
     <Wrapper>
       <Link target="_blank" href={appLink ?? '#'}>
-        <img width="50px" src="/logo.png" />
+        <img width="50px" src={ASSET_LOGO} />
         <div>
           <Title>{gamba.config.name}</Title>
           <Subtitle>Powered by Gamba</Subtitle>

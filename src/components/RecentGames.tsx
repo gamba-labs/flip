@@ -1,4 +1,3 @@
-import { PublicKey } from '@solana/web3.js'
 import { LAMPORTS_PER_SOL, useGamba } from 'gamba'
 import React from 'react'
 import styled from 'styled-components'
@@ -39,7 +38,7 @@ const Wrapper = styled.div`
 export function RecentGames() {
   const gamba = useGamba()
 
-  const getReadableResult = (pubkey: PublicKey, resultIndex: number) => {
+  const getReadableResult = (pubkey: any /** Pubkey */, resultIndex: number) => {
     // The game was played on our frontend
     if (pubkey.equals(gamba.config.creator)) {
       const result = OPTIONS[resultIndex]?.label ?? resultIndex

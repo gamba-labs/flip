@@ -141,9 +141,7 @@ export function DropdownMenu({ label, options, disabled }: Props) {
         disabled={disabled}
         onClick={() => open()}
       >
-        <>
-          {label}
-        </>
+        {label}
       </SelectButton>
       {isOpen && (
         <Dropdown ref={ref}>
