@@ -1,3 +1,6 @@
+> **Warning**
+> ❗️❗️❗️ This repository is outdated! Please check out our [New template](https://github.com/gamba-labs/platform) in the meantime.
+
 # Coin Flip
 
 A simple Coin Flip game built on [Gamba](https://github.com/gamba-labs/gamba).
